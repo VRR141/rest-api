@@ -1,5 +1,7 @@
 package org.vrr.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.vrr.service.position.PositionService;
 import java.util.List;
 
 @RestController
+@Api(tags = {"Positions info"})
 public class PositionRestController {
 
     private PositionService positionService;
@@ -23,6 +26,7 @@ public class PositionRestController {
 
     @RequestMapping(value = "/positions", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get all positions")
     public List<Position> getAllPositions(){
         List<Position> result = positionService.getAllPositions();
         return result;
@@ -30,6 +34,7 @@ public class PositionRestController {
 
     @RequestMapping(value = "/positions/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get positions by id")
     public List<Employee> getPosition(@PathVariable int id){
         List<Employee> result = positionService.getEmployees(id);
         if (result == null){
@@ -38,20 +43,23 @@ public class PositionRestController {
         return result;
     }
 
+    @ApiOperation(value = "Add positions")
     @RequestMapping(value = "/positions", method = RequestMethod.POST)
     public ResponseEntity<Position> addPosition(@RequestBody Position position){
         positionService.savePosition(position);
         return new ResponseEntity<>(position, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Update positions")
     @RequestMapping(value = "/positions", method = RequestMethod.PUT)
     public ResponseEntity<Position> updatePosition(@RequestBody Position Position){
         positionService.savePosition(Position);
         return new ResponseEntity<>(Position, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Delete position id")
     @RequestMapping(value = "/positions/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deleteEmployee(@PathVariable int id){
+    public ResponseEntity<String> deletePosistion(@PathVariable int id){
         if (positionService.getPosition(id) == null){
             throw new NoSuchEmployeeException("There is no position with id " + id + " at Database");
         }

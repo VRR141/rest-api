@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class Customer implements Marker{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

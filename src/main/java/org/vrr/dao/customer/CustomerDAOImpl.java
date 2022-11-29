@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.vrr.entity.Customer;
+import org.vrr.entity.Employee;
 import org.vrr.entity.Project;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public List<Customer> getAllCustomer() {
         Session session = sessionFactory.getCurrentSession();
-        Query<Customer> query = session.createQuery("from Customer ", Customer.class);
+        Query<Customer> query = session.createQuery("select customer from Customer customer " +
+                "join fetch customer.project", Customer.class);
         List<Customer> result = query.getResultList();
         return result;
     }
