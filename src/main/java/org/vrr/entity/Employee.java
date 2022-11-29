@@ -56,6 +56,9 @@ public class Employee implements Marker {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void addPosition(Position position){
         this.position.addEmployee(this);
     }
 
