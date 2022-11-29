@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee implements Marker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,20 +50,13 @@ public class Employee {
         this.projects = projects;
     }
 
-    //    public void addProjectToEmployee(Project project){
-//        if (projects == null){
-//            projects = new LinkedList<>();
-//        }
-//        projects.add(project);
-//    }
-
-
     public Position getPosition() {
         return position;
     }
 
     public void setPosition(Position position) {
         this.position = position;
+        this.position.addEmployee(this);
     }
 
     public int getId() {

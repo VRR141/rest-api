@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "positions")
-public class Position {
+public class Position implements Marker{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,9 @@ public class Position {
     public Position() {
     }
 
+    public void addEmployee(Employee employee){
+        employees.add(employee);
+    }
     public List<Employee> getEmployees() {
         return employees;
     }
