@@ -8,6 +8,7 @@ import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.vrr.entity.Customer;
 import org.vrr.entity.Employee;
 import org.vrr.entity.Project;
 
@@ -26,7 +27,8 @@ public class ProjectDAOImpl implements ProjectDAO{
     @Override
     public List<Project> getAllProject() {
         Session session = sessionFactory.getCurrentSession();
-        Query<Project> query = session.createQuery("from Project ", Project.class);
+        Query<Project> query = session.createQuery("select project from Project project " +
+                "join fetch project.customer", Project.class);
         List<Project> result = query.getResultList();
         return result;
     }
