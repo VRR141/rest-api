@@ -32,7 +32,7 @@ public class SpringFoxConfig {
                 "t.me/VRR14",
                 "v.r.ryazantsev@gmail.com");
         return new ApiInfo(
-            "Simple rest app",
+            "Rest API",
                 "Spring MVC, Hibernate, MySQL, Tomcat 9.0.681",
                 "1.0.0",
                 "",

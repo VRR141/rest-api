@@ -66,4 +66,24 @@ public class EmployeeRestController {
         employeeService.removeEmployee(id);
         return new ResponseEntity<>(new String("Employee with id " + id + " successfully delete"),HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Get employees by positions ID")
+    @RequestMapping(value = "/employees/positions/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Employee>> getEmployeesByPosition(@PathVariable int id){
+        List<Employee> result = employeeService.getEmployeeByPositionsID(id);
+        if (result == null){
+            throw new NoSuchEmployeeException("There is no employees with position ID " + id + " at Database");
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    @ApiOperation(value = "Get employees by project ID")
+    @RequestMapping(value = "/employees/projects/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Employee>> getEmployeeByProjectID(@PathVariable int id){
+        List<Employee> result = employeeService.getEmployeeByProjectID(id);
+        if (result == null){
+            throw new NoSuchEmployeeException("There is no employees with project ID " + id + " at Database");
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 }

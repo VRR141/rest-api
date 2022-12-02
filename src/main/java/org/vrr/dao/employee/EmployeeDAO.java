@@ -14,4 +14,8 @@ public interface EmployeeDAO {
 
     void removeEmployee(int id);
 
+    List<Employee> getEmployeeByPositionsID(int id);
+
+    List<Employee> getEmployeeByProjectID(int id);
+
 }

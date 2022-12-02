@@ -76,4 +76,13 @@ public class ProjectRestController {
         List<Employee> result = projectService.getEmployeeFromProject(id);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Set project to employee by proj id & emp id")
+    @RequestMapping(value = "/projects/{projectId}set{employeeId}", method = RequestMethod.POST)
+    public ResponseEntity<Project> setProjectToEmployee(@PathVariable int projectId,
+                                                       @PathVariable int employeeId){
+
+        projectService.setProjectToEmployee(projectId, employeeId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

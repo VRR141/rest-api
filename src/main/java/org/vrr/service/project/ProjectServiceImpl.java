@@ -59,4 +59,10 @@ public class ProjectServiceImpl implements ProjectService {
         List<Employee> result = projectDAO.getEmployeeFromProject(id);
         return result;
     }
+
+    @Transactional
+    @Override
+    public void setProjectToEmployee(int projectId, int employeeId) {
+        projectDAO.setProjectToEmployee(projectId, employeeId);
+    }
 }

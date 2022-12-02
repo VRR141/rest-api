@@ -48,6 +48,10 @@ public class Project implements Marker {
         this.name = name;
     }
 
+    public void setEmployeeToProject(Employee employee){
+        employeeList.add(employee);
+    }
+
     public void addEmployeeToProject(Employee employee) {
         if (employeeList == null) {
             employeeList = new LinkedList<>();

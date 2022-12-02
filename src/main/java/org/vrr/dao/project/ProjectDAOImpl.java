@@ -61,4 +61,15 @@ public class ProjectDAOImpl implements ProjectDAO{
         Hibernate.initialize(result);
         return result;
     }
+
+    @Override
+    public void setProjectToEmployee(int projectId, int employeeId) {
+        Session session = sessionFactory.getCurrentSession();
+        Project project = session.get(Project.class, projectId);
+        Employee employee = session.get(Employee.class, employeeId);
+        Hibernate.initialize(project);
+        Hibernate.initialize(employee);
+        employee.setProjectToEmployee(project);
+        project.setEmployeeToProject(employee);
+    }
 }

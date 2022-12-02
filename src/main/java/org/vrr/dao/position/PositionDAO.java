@@ -17,4 +17,6 @@ public interface PositionDAO {
 
     List<Employee> getEmployees(int positionId);
 
+    void setPositionToEmployee(int positionId, int employeeId);
+
 }

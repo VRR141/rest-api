@@ -59,11 +59,18 @@ public class PositionRestController {
 
     @ApiOperation(value = "Delete position id")
     @RequestMapping(value = "/positions/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deletePosistion(@PathVariable int id){
+    public ResponseEntity<String> deletePosition(@PathVariable int id){
         if (positionService.getPosition(id) == null){
             throw new NoSuchEmployeeException("There is no position with id " + id + " at Database");
         }
         positionService.removePosition(id);
         return new ResponseEntity<>(new String("Position with id " + id + " successfully delete"),HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Set positions to employee by pos id & emp id")
+    @RequestMapping(value = "/positions/{positionsID}set{employeeID}", method = RequestMethod.POST)
+    public ResponseEntity<Position> setPositionToEmployee(@PathVariable int positionsID, @PathVariable int employeeID){
+        positionService.setPositionToEmployee(positionsID, employeeID);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

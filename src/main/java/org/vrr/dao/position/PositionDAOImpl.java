@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.vrr.entity.Customer;
 import org.vrr.entity.Employee;
 import org.vrr.entity.Position;
 
@@ -59,4 +60,12 @@ public class PositionDAOImpl implements PositionDAO{
         return result;
     }
 
+    @Override
+    public void setPositionToEmployee(int positionId, int employeeId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Position> query = session.createQuery("update Employee set position.id =: positionid where id =: employeeId");
+        query.setParameter("positionid", positionId);
+        query.setParameter("employeeId", employeeId);
+        query.executeUpdate();
+    }
 }
