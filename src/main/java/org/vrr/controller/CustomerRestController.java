@@ -51,7 +51,7 @@ public class CustomerRestController {
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Update customer (id not required)")
+    @ApiOperation(value = "Update customer")
     @RequestMapping(value = "/customers", method = RequestMethod.PUT)
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
         customerService.saveCustomer(customer);
@@ -68,11 +68,10 @@ public class CustomerRestController {
         return new ResponseEntity<>(new String("Customer with id " + id + " successfully delete"),HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Add project to customer")
-    @RequestMapping(value = "/customers/{customerId}add{projectId}", method = RequestMethod.PATCH)
+    @ApiOperation(value = "Set project to customer")
+    @RequestMapping(value = "/customers/{customerId}set{projectId}", method = RequestMethod.PATCH)
     public ResponseEntity<String> setProjectToCustomer(@PathVariable int customerId,
                                                        @PathVariable int projectId){
-
         customerService.setProjectToCustomer(customerId, projectId);
         return new ResponseEntity<>(new String("Customer with id " + customerId +
                 " successfully get project " + projectId),HttpStatus.OK);

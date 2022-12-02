@@ -16,4 +16,7 @@ public interface PositionService {
     void removePosition(int id);
 
     List<Employee> getEmployees(int positionId);
+
+    void setPositionToEmployee(int positionId, int employeeId);
+
 }

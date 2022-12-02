@@ -15,13 +15,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     private EmployeeDAO employeeDAO;
 
-//    private NewEmployeeDao newEmployeeDao;
-//
-//    @Autowired
-//    public void setNewEmployeeDao(NewEmployeeDao newEmployeeDao) {
-//        this.newEmployeeDao = newEmployeeDao;
-//    }
-
     @Autowired
     public void setEmployeeDAO(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
@@ -47,4 +40,15 @@ public class EmployeeServiceImpl implements EmployeeService{
         employeeDAO.removeEmployee(id);
     }
 
+    @Transactional
+    @Override
+    public List<Employee> getEmployeeByPositionsID(int id) {
+        return employeeDAO.getEmployeeByPositionsID(id);
+    }
+
+    @Transactional
+    @Override
+    public List<Employee> getEmployeeByProjectID(int id) {
+        return employeeDAO.getEmployeeByProjectID(id);
+    }
 }

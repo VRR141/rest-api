@@ -42,6 +42,10 @@ public class Employee implements Marker {
     public Employee() {
     }
 
+    public void setProjectToEmployee(Project project){
+        this.projects.add(project);
+    }
+
     public List<Project> getProjects() {
         return projects;
     }

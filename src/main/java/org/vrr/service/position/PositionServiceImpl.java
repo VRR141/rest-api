@@ -51,4 +51,10 @@ public class PositionServiceImpl implements PositionService {
         List<Employee> result = positionDAO.getEmployees(positionId);
         return result;
     }
+
+    @Transactional
+    @Override
+    public void setPositionToEmployee(int positionId, int employeeId) {
+        positionDAO.setPositionToEmployee(positionId, employeeId);
+    }
 }

@@ -16,4 +16,6 @@ public interface ProjectDAO {
     void removeProject(int id);
 
     List<Employee> getEmployeeFromProject(int id);
+
+    void setProjectToEmployee(int projectId, int employeeId);
 }
